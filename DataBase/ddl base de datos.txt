@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Roles (
 -- Crear la tabla de Usuarios
 CREATE TABLE IF NOT EXISTS Usuarios (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL,
+    nickname VARCHAR(30) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
     nombre VARCHAR(30) NOT NULL,
@@ -102,3 +102,13 @@ INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('1', 'S');
 INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('2', 'M');
 INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('3', 'L');
 INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('4', 'XL');
+
+
+ALTER TABLE `integrador`.`usuarios` 
+DROP FOREIGN KEY `usuarios_ibfk_1`;
+ALTER TABLE `integrador`.`usuarios` 
+CHANGE COLUMN `rol_id` `rol_id` INT NULL DEFAULT 2 ;
+ALTER TABLE `integrador`.`usuarios` 
+ADD CONSTRAINT `usuarios_ibfk_1`
+  FOREIGN KEY (`rol_id`)
+  REFERENCES `integrador`.`roles` (`rol_id`);
