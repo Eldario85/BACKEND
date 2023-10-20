@@ -93,3 +93,25 @@ CREATE TABLE IF NOT EXISTS Reseñas (
     FOREIGN KEY (camiseta_id) REFERENCES Camisetas(camiseta_id),
     FOREIGN KEY (user_id) REFERENCES Usuarios(user_id)
 );
+
+
+
+INSERT INTO `integrador`.`roles` (`rol_id`, `nombre_del_rol`) VALUES ('1', 'ADMINISTRADOR');
+INSERT INTO `integrador`.`roles` (`rol_id`, `nombre_del_rol`) VALUES ('2', 'USUARIO');
+
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('1', 'S');
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('2', 'M');
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('3', 'L');
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('4', 'XL');
+
+
+ALTER TABLE `integrador`.`usuarios` 
+DROP FOREIGN KEY `usuarios_ibfk_1`;
+ALTER TABLE `integrador`.`usuarios` 
+CHANGE COLUMN `rol_id` `rol_id` INT NULL DEFAULT 2 ;
+ALTER TABLE `integrador`.`usuarios` 
+ADD CONSTRAINT `usuarios_ibfk_1`
+  FOREIGN KEY (`rol_id`)
+  REFERENCES `integrador`.`roles` (`rol_id`);
+
+

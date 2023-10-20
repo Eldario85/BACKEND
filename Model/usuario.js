@@ -33,7 +33,7 @@ usuarioDb.create = function (usuario, funcallback) {
     !usuario.email ||
     !usuario.nombre ||
     !usuario.apellido ||
-    usuario.direccion ||
+    !usuario.direccion ||
     !usuario.telefono
   ) {
     return funcallback({

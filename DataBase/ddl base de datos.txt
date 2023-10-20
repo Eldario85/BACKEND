@@ -112,3 +112,5 @@ ALTER TABLE `integrador`.`usuarios`
 ADD CONSTRAINT `usuarios_ibfk_1`
   FOREIGN KEY (`rol_id`)
   REFERENCES `integrador`.`roles` (`rol_id`);
+
+
