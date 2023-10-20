@@ -112,7 +112,7 @@ usuarioDb.update = function (usuario, id_usaurio, funcallback) {
     id_usaurio,
   ];
   const consulta =
-    "UPDATE usuarios set nickname = ?, password = ?, email = ?, nombre=?, apellido=?,direccion=?,telefono=?, WHERE id = ?;";
+    "UPDATE usuarios set nickname = ?, password = ?, email = ?, nombre=?, apellido=?,direccion=?,telefono=?, WHERE user_id = ?;";
 
   connection.query(consulta, params, (err, result) => {
     if (err) {
@@ -136,7 +136,7 @@ usuarioDb.update = function (usuario, id_usaurio, funcallback) {
         });
       } else {
         funcallback(undefined, {
-          message: `se actualizaron los datos del usuario ${id}`,
+          message: `se actualizaron los datos del usuario ${id_usaurio}`,
           detail: result,
         });
       }

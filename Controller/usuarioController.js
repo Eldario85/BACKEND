@@ -35,7 +35,7 @@ function createUser(req, res) {
 
 function updateUser(req, res) {
   const datos_usuario = req.body;
-  const id_usuario = req.params.id_usuario;
+  const id_usuario = req.params.user_id;
   usuarioDb.update(datos_usuario, id_usuario, (err, resultado) => {
     if (err) {
       res.status(500).send(err);
@@ -46,7 +46,7 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
-  usuarioDb.borrar(req.params.id_usuario, (err, result_model) => {
+  usuarioDb.borrar(req.params.user_id, (err, result_model) => {
     if (err) {
       res.status(500).send(err);
     } else {

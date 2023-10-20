@@ -18,21 +18,14 @@ var imagenesDb = {};
 //crear imagenes
 imagenesDb.create = function (imagenes, funCallback) {
   consulta =
-    "INSERT INTO imagenes (nombre, descripcion, precio, stock_disponible, imagen, talla) VALUES (?,?,?,?,?,?);";
-  params = [
-    imagenes.nombre,
-    imagenes.descripcion,
-    imagenes.precio,
-    imagenes.stock_disponible,
-    imagenes.imagen,
-    imagenes.talla,
-  ];
+    "INSERT INTO camiseta_imagenes (camiseta_id, imagen_url) VALUES (?,?);";
+  params = [imagenes.camiseta_id, imagenes.imagen_url];
 
   connection.query(consulta, params, (err, rows) => {
     if (err) {
       if (err.code == "ER_DUP_ENTRY") {
         funCallback({
-          message: "El imagenes ya fue registrado anteriormente",
+          message: "La imagen ya fue registrada anteriormente",
           detail: err,
         });
       } else {
@@ -43,7 +36,7 @@ imagenesDb.create = function (imagenes, funCallback) {
       }
     } else {
       funCallback(undefined, {
-        message: `se creo el imagenes  ${imagenes.nombre}`,
+        message: `se creo la imagen  ${imagenes.camiseta_id}`,
         detail: rows,
       });
     }
@@ -52,11 +45,11 @@ imagenesDb.create = function (imagenes, funCallback) {
 
 //R = READ
 imagenesDb.getAll = function (funCallback) {
-  var consulta = "SELECT * FROM imagenes";
+  var consulta = "SELECT * FROM camiseta_imagenes";
   connection.query(consulta, function (err, rows) {
     if (err) {
       funCallback({
-        message: "ha ocurrido un error inesperado al buscar el imagenes",
+        message: "ha ocurrido un error inesperado al buscar la imagen",
         detail: err,
       });
     } else {
@@ -69,16 +62,8 @@ imagenesDb.getAll = function (funCallback) {
 // personaController --> app.put('/', actualizar);
 imagenesDb.update = function (imagenes, id, funCallback) {
   const consulta =
-    "UPDATE imagenes SET nombre =?, descripcion= ?, precio =?, stock_disponible=?, imagen=?, talla=? WHERE id = ?";
-  const params = [
-    imagenes.nombre,
-    imagenes.descripcion,
-    imagenes.precio,
-    imagenes.stock_disponible,
-    imagenes.imagen,
-    imagenes.talla,
-    id,
-  ];
+    "UPDATE camiseta_imagenes SET camiseta_id =?, imagen_url= ? WHERE imagen_id = ?";
+  const params = [imagenes.camiseta_id, imagenes.imagen_url, id];
 
   connection.query(consulta, params, (err, result) => {
     if (err) {
@@ -103,7 +88,7 @@ imagenesDb.update = function (imagenes, id, funCallback) {
       });
     } else {
       funCallback(undefined, {
-        message: `se modificó el imagenes  ${imagenes.nombre} ${imagenes.descripcion}`,
+        message: `se modificó el imagenes  ${imagenes.camiseta_id} `,
         detail: result,
       });
     }
@@ -113,19 +98,19 @@ imagenesDb.update = function (imagenes, id, funCallback) {
 // D = DELETE
 // personaController --> app.post('/', borrar);
 imagenesDb.borrar = function (id, funCallback) {
-  const consulta = "DELETE FROM imagenes WHERE id = ?";
+  const consulta = "DELETE FROM camiseta_imagenes WHERE imagen_id = ?";
   connection.query(consulta, id, (err, result) => {
     if (err) {
       funCallback({ menssage: err.code, detail: err });
     } else {
       if (result.affectedRows == 0) {
         funCallback(undefined, {
-          message: "no se encontro imagenes con el id ingresado",
+          message: "no se encontro imagene con el id ingresado",
           detail: result,
         });
       } else {
         funCallback(undefined, {
-          message: "imagenes eliminado",
+          message: "imagen eliminada",
           detail: result,
         });
       }
@@ -134,25 +119,29 @@ imagenesDb.borrar = function (id, funCallback) {
 };
 
 imagenesDb.getById = function (id, funCallback) {
-  connection.query("SELECT * FROM imagenes WHERE id = ?", id, (err, result) => {
-    if (err) {
-      funCallback({
-        menssage: "a ocurrido algun error inesperado al buscar el imagenes",
-        detail: err,
-      });
-    } else if (result.length == 0) {
-      //consulta no impacta en nada dentro de la BD
-      funCallback(undefined, {
-        menssage: `no se encontro un imagenes con el id: ${id}`,
-        detail: result,
-      });
-    } else {
-      funCallback(undefined, {
-        menssage: `los datos del imagenes con el id ${id} son:`,
-        detail: result[0],
-      });
+  connection.query(
+    "SELECT * FROM imagenes WHERE imagen_id = ?",
+    id,
+    (err, result) => {
+      if (err) {
+        funCallback({
+          menssage: "a ocurrido algun error inesperado al buscar la imagen",
+          detail: err,
+        });
+      } else if (result.length == 0) {
+        //consulta no impacta en nada dentro de la BD
+        funCallback(undefined, {
+          menssage: `no se encontro una imagen con el id: ${id}`,
+          detail: result,
+        });
+      } else {
+        funCallback(undefined, {
+          menssage: `los datos de la imagen con el id ${id} es:`,
+          detail: result[0],
+        });
+      }
     }
-  });
+  );
 };
 
 module.exports = imagenesDb;

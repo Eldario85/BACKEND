@@ -44,7 +44,7 @@ camisetasDb.create = function (camisetas, funCallback) {
       }
     } else {
       funCallback(undefined, {
-        message: `se creo la camisetas  ${camisetas.nombre_del_producto}`,
+        message: `se creo la camiseta  ${camisetas.nombre_del_producto}`,
         detail: rows,
       });
     }
@@ -100,7 +100,7 @@ camisetasDb.update = function (camisetas, id, funCallback) {
       });
     } else {
       funCallback(undefined, {
-        message: `se modificó la camisetas  ${camisetas.nombre_del_producto} ${camisetas.descripcion}`,
+        message: `se modificó la camiseta  ${camisetas.nombre_del_producto} ${camisetas.descripcion}`,
         detail: result,
       });
     }
@@ -109,7 +109,7 @@ camisetasDb.update = function (camisetas, id, funCallback) {
 
 // D = DELETE
 camisetasDb.borrar = function (id, funCallback) {
-  const consulta = "DELETE FROM camisetas WHERE id = ?";
+  const consulta = "DELETE FROM camisetas WHERE camiseta_id = ?";
   connection.query(consulta, id, (err, result) => {
     if (err) {
       funCallback({ message: err.code, detail: err });
@@ -121,7 +121,7 @@ camisetasDb.borrar = function (id, funCallback) {
         });
       } else {
         funCallback(undefined, {
-          message: "camisetas eliminada",
+          message: "camiseta eliminada",
           detail: result,
         });
       }

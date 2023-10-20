@@ -18,7 +18,8 @@ function login(req, res) {
       if (iguales) {
         const user = {
           nickname: result.detail.nickname,
-          mail: result.detail.mail,
+          email: result.detail.email,
+          rol: result.detail.rol,
         };
         jwt.sign(
           user,

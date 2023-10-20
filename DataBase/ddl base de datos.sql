@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Roles (
 -- Crear la tabla de Usuarios
 CREATE TABLE IF NOT EXISTS Usuarios (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL,
+    nickname VARCHAR(30) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(50) NOT NULL,
     nombre VARCHAR(30) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS Camiseta_Imagenes (
 
 -- Crear la tabla de Pedidos
 CREATE TABLE IF NOT EXISTS Pedidos (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     fecha_del_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10, 2) NOT NULL,
@@ -72,13 +72,13 @@ CREATE TABLE IF NOT EXISTS Pedidos (
 
 -- Crear la tabla de Detalles del Pedido
 CREATE TABLE IF NOT EXISTS Detalles_del_Pedido (
-    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
+    pedido_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT,
     camiseta_id INT,
     cantidad INT NOT NULL,
     precio_unitario DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES Pedidos(order_id),
+    FOREIGN KEY (pedido_id) REFERENCES Pedidos(pedido_id),
     FOREIGN KEY (camiseta_id) REFERENCES Camisetas(camiseta_id)
 );
 
@@ -115,3 +115,7 @@ ADD CONSTRAINT `usuarios_ibfk_1`
   REFERENCES `integrador`.`roles` (`rol_id`);
 
 
+ALTER TABLE `integrador`.`usuarios` 
+ADD UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
+ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE;
+;
