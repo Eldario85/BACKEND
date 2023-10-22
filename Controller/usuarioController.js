@@ -7,7 +7,7 @@ const securityController = require("./securityController");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", securityController.verificarToken, getAll);
+app.get("/", getAll);
 app.post("/", createUser);
 app.put("/:id_usuario", updateUser);
 app.delete("/:id_usuario", deleteUser);

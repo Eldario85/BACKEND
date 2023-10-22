@@ -53,7 +53,8 @@ camisetasDb.create = function (camisetas, funCallback) {
 
 //R = READ
 camisetasDb.getAll = function (funCallback) {
-  const consulta = "SELECT * FROM camisetas";
+  const consulta =
+    "select * from camisetas inner join camiseta_imagenes on camisetas.camiseta_id=camiseta_imagenes.camiseta_id join equipos on equipos.equipo_id=camisetas.equipo_id";
   connection.query(consulta, function (err, rows) {
     if (err) {
       funCallback({
@@ -131,7 +132,7 @@ camisetasDb.borrar = function (id, funCallback) {
 
 camisetasDb.getById = function (id, funCallback) {
   connection.query(
-    "SELECT * FROM camisetas WHERE camiseta_id = ?",
+    "select * from camisetas inner join camiseta_imagenes on camisetas.camiseta_id=camiseta_imagenes.camiseta_id join equipos on equipos.equipo_id=camisetas.equipo_id WHERE camisetas.camiseta_id = ?",
     id,
     (err, result) => {
       if (err) {
