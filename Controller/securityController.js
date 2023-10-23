@@ -19,7 +19,7 @@ function login(req, res) {
         const user = {
           nickname: result.detail.nickname,
           email: result.detail.email,
-          rol: result.detail.rol,
+          rol_id: result.detail.rol_id,
         };
         jwt.sign(
           user,
