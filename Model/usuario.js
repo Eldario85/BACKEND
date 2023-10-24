@@ -98,21 +98,18 @@ usuarioDb.getAll = function (funCallback) {
 
 //U = UPDATE
 // usuarioController --> app.put('/:id_usuario', updateUser);
-usuarioDb.update = function (usuario, id_usaurio, funcallback) {
-  let claveCifrada = bcrypt.hashSync(datos_usuario.clave, 10);
-
+usuarioDb.update = function (usuario, id, funcallback) {
   const params = [
     usuario.nickname,
-    claveCifrada,
     usuario.email,
     usuario.nombre,
     usuario.apellido,
     usuario.direccion,
     usuario.telefono,
-    id_usaurio,
+    id,
   ];
   const consulta =
-    "UPDATE usuarios set nickname = ?, password = ?, email = ?, nombre=?, apellido=?,direccion=?,telefono=?, WHERE user_id = ?;";
+    "UPDATE usuarios set nickname = ?, email = ?, nombre=?, apellido=?,direccion=?,telefono=?  WHERE user_id = ?;";
 
   connection.query(consulta, params, (err, result) => {
     if (err) {
@@ -136,7 +133,7 @@ usuarioDb.update = function (usuario, id_usaurio, funcallback) {
         });
       } else {
         funcallback(undefined, {
-          message: `se actualizaron los datos del usuario ${id_usaurio}`,
+          message: `se actualizaron los datos del usuario ${id}`,
           detail: result,
         });
       }
@@ -193,6 +190,31 @@ usuarioDb.findByNickname = function (nickname, funCallback) {
       }
     }
   });
+};
+
+usuarioDb.getById = function (id, funCallback) {
+  connection.query(
+    "SELECT * FROM usuarios WHERE user_id = ?",
+    id,
+    (err, result) => {
+      if (err) {
+        funCallback({
+          message: "a ocurrido algun error inesperado al buscar el usuario",
+          detail: err,
+        });
+      } else if (result.length == 0) {
+        funCallback(undefined, {
+          message: `no se encontro un usuario con el id: ${id}`,
+          detail: result,
+        });
+      } else {
+        funCallback(undefined, {
+          message: `los datos del usuario con el id ${id} son:`,
+          detail: result[0],
+        });
+      }
+    }
+  );
 };
 
 module.exports = usuarioDb;

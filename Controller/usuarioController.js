@@ -9,8 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", getAll);
 app.post("/", createUser);
-app.put("/:id_usuario", updateUser);
-app.delete("/:id_usuario", deleteUser);
+app.put("/:id", updateUser);
+app.delete("/:id", deleteUser);
+app.get("/:id", getById);
 
 function getAll(req, res) {
   usuarioDb.getAll((err, resultado) => {
@@ -34,9 +35,9 @@ function createUser(req, res) {
 }
 
 function updateUser(req, res) {
-  const datos_usuario = req.body;
-  const id_usuario = req.params.user_id;
-  usuarioDb.update(datos_usuario, id_usuario, (err, resultado) => {
+  const usuario = req.body;
+  const id = req.params.id;
+  usuarioDb.update(usuario, id, (err, resultado) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -55,6 +56,17 @@ function deleteUser(req, res) {
       } else {
         res.send(result_model.message);
       }
+    }
+  });
+}
+
+function getById(req, res) {
+  let id = req.params.id;
+  usuarioDb.getById(id, (err, result_model) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(result_model);
     }
   });
 }
