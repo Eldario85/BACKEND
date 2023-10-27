@@ -8,6 +8,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `integrador` ;
 -- Schema integrador
 -- -----------------------------------------------------
 
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `integrador`.`usuarios` (
     FOREIGN KEY (`rol_id`)
     REFERENCES `integrador`.`roles` (`rol_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -208,3 +209,20 @@ DEFAULT CHARACTER SET = utf8mb3;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `integrador`.`roles` (`rol_id`, `nombre_del_rol`) VALUES ('1', 'ADMINISTRADOR');
+INSERT INTO `integrador`.`roles` (`rol_id`, `nombre_del_rol`) VALUES ('2', 'USUARIO');
+
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('1', 'S');
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('2', 'M');
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('3', 'L');
+INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('4', 'XL');
+
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('1', 'River Plate', 'Argentina', 'Argentina', '1901');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('2', 'Independiente', 'Argentina', 'Argentina', '1905');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('3', 'Real Madrid', 'España', 'La Liga', '1920');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('4', 'Inter Miami', 'EEUU', 'MLS', '2018');
+
+INSERT INTO usuarios (nickname, password, email, nombre, apellido, direccion, telefono, rol_id) VALUES ("admin","$2b$10$jj5zoCRdEdIWCjjQ31w2HOcjA2ws//YQbX4FCcxwDsBTAtNStceW6","admin@gmail.com","admin","admin","obera",3755404040, 1);
+
+INSERT INTO integrador.camisetas (camiseta_id, nombre_del_producto, descripcion, imagen, precio, stock, equipo_id, talla_id) VALUES (2,"Camiseta River Plate","Temporada 2023-2024","https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/401778e50ef4449d9656d40e9346b8af_9366/Camiseta_Titular_River_Plate_23-24_Blanco_HT3679_01_laydown.jpg",50000.00,1,1,2), (3,"Camiseta Independientee","Temporada 2023-2024","https://pbs.twimg.com/media/CQfjMNEWUAA3BFc.jpg",45000.00,1,2,2),(4,"Camiseta Real Madrid","Temporada 2023-2024","https://img.planetafobal.com/2013/08/real-madrid-adidas-titular-2013-2014-camiseta.jpg",60000.00,1,3,2);

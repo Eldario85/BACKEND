@@ -105,24 +105,6 @@ INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('3', 'L');
 INSERT INTO `integrador`.`tallas` (`talla_id`, `talla`) VALUES ('4', 'XL');
 
 
-ALTER TABLE `integrador`.`usuarios` 
-DROP FOREIGN KEY `usuarios_ibfk_1`;
-ALTER TABLE `integrador`.`usuarios` 
-CHANGE COLUMN `rol_id` `rol_id` INT NULL DEFAULT 2 ;
-ALTER TABLE `integrador`.`usuarios` 
-ADD CONSTRAINT `usuarios_ibfk_1`
-  FOREIGN KEY (`rol_id`)
-  REFERENCES `integrador`.`roles` (`rol_id`);
-
-
-ALTER TABLE `integrador`.`usuarios` 
-ADD UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
-ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE;
-;
-
-ALTER TABLE `integrador`.`camisetas` 
-ADD COLUMN `imagen` VARCHAR(150) NULL AFTER `descripcion`;
-
 
 INSERT INTO usuarios (nickname, password, email, nombre, apellido, direccion, telefono, rol_id) VALUES ("admin","$2b$10$jj5zoCRdEdIWCjjQ31w2HOcjA2ws//YQbX4FCcxwDsBTAtNStceW6","admin@gmail.com","admin","admin","obera",3755404040, 1)
 

@@ -25,7 +25,6 @@ camisetasDb.create = function (camisetas, funCallback) {
     camisetas.descripcion,
     camisetas.imagen,
     camisetas.precio,
-    camisetas.imagen,
     camisetas.stock,
     camisetas.equipo_id,
     camisetas.talla_id,
@@ -55,8 +54,7 @@ camisetasDb.create = function (camisetas, funCallback) {
 
 //R = READ
 camisetasDb.getAll = function (funCallback) {
-  const consulta =
-    "select * from camisetas inner join camiseta_imagenes on camisetas.camiseta_id=camiseta_imagenes.camiseta_id join equipos on equipos.equipo_id=camisetas.equipo_id";
+  const consulta = "select * from camisetas ";
   connection.query(consulta, function (err, rows) {
     if (err) {
       funCallback({
@@ -78,7 +76,6 @@ camisetasDb.update = function (camisetas, id, funCallback) {
     camisetas.descripcion,
     camisetas.imagen,
     camisetas.precio,
-    camisetas.imagen,
     camisetas.stock,
     camisetas.equipo_id,
     camisetas.talla_id,
