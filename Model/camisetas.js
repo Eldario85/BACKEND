@@ -19,10 +19,11 @@ const camisetasDb = {};
 //crear camisetas
 camisetasDb.create = function (camisetas, funCallback) {
   consulta =
-    "INSERT INTO camisetas (nombre_del_producto, descripcion, precio, imagen,stock, equipo_id, talla_id) VALUES (?,?,?,?,?,?,?);";
+    "INSERT INTO camisetas (nombre_del_producto, descripcion, imagen, precio, stock, equipo_id, talla_id) VALUES (?,?,?,?,?,?,?);";
   params = [
     camisetas.nombre_del_producto,
     camisetas.descripcion,
+    camisetas.imagen,
     camisetas.precio,
     camisetas.imagen,
     camisetas.stock,
@@ -71,10 +72,11 @@ camisetasDb.getAll = function (funCallback) {
 // U = UPDATE
 camisetasDb.update = function (camisetas, id, funCallback) {
   const consulta =
-    "UPDATE camisetas SET nombre_del_producto =?, descripcion= ?, precio =?,imagen=?, stock=?, equipo_id=?, talla_id=? WHERE camiseta_id = ?";
+    "UPDATE camisetas SET nombre_del_producto =?, descripcion= ?, imagen=?,precio =?, stock=?, equipo_id=?, talla_id=? WHERE camiseta_id = ?";
   const params = [
     camisetas.nombre_del_producto,
     camisetas.descripcion,
+    camisetas.imagen,
     camisetas.precio,
     camisetas.imagen,
     camisetas.stock,
@@ -134,7 +136,7 @@ camisetasDb.borrar = function (id, funCallback) {
 
 camisetasDb.getById = function (id, funCallback) {
   connection.query(
-    "select * from camisetas inner join camiseta_imagenes on camisetas.camiseta_id=camiseta_imagenes.camiseta_id join equipos on equipos.equipo_id=camisetas.equipo_id WHERE camisetas.camiseta_id = ?",
+    "select * from camisetas  WHERE camisetas.camiseta_id = ?",
     id,
     (err, result) => {
       if (err) {

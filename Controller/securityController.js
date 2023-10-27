@@ -17,6 +17,7 @@ function login(req, res) {
       const iguales = bcrypt.compareSync(password, result.detail.password);
       if (iguales) {
         const user = {
+          user_id: result.detail.user_id,
           nickname: result.detail.nickname,
           email: result.detail.email,
           rol_id: result.detail.rol_id,
