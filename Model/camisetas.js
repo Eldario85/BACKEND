@@ -19,11 +19,12 @@ const camisetasDb = {};
 //crear camisetas
 camisetasDb.create = function (camisetas, funCallback) {
   consulta =
-    "INSERT INTO camisetas (nombre_del_producto, descripcion, precio, stock, equipo_id, talla_id) VALUES (?,?,?,?,?,?);";
+    "INSERT INTO camisetas (nombre_del_producto, descripcion, precio, imagen,stock, equipo_id, talla_id) VALUES (?,?,?,?,?,?,?);";
   params = [
     camisetas.nombre_del_producto,
     camisetas.descripcion,
     camisetas.precio,
+    camisetas.imagen,
     camisetas.stock,
     camisetas.equipo_id,
     camisetas.talla_id,
@@ -70,11 +71,12 @@ camisetasDb.getAll = function (funCallback) {
 // U = UPDATE
 camisetasDb.update = function (camisetas, id, funCallback) {
   const consulta =
-    "UPDATE camisetas SET nombre_del_producto =?, descripcion= ?, precio =?, stock=?, equipo_id=?, talla_id=? WHERE camiseta_id = ?";
+    "UPDATE camisetas SET nombre_del_producto =?, descripcion= ?, precio =?,imagen=?, stock=?, equipo_id=?, talla_id=? WHERE camiseta_id = ?";
   const params = [
     camisetas.nombre_del_producto,
     camisetas.descripcion,
     camisetas.precio,
+    camisetas.imagen,
     camisetas.stock,
     camisetas.equipo_id,
     camisetas.talla_id,

@@ -99,6 +99,7 @@ usuarioDb.getAll = function (funCallback) {
 //U = UPDATE
 // usuarioController --> app.put('/:id_usuario', updateUser);
 usuarioDb.update = function (usuario, id, funcallback) {
+  let claveCifrada = bcrypt.hashSync(usuario.password, 10);
   const params = [
     usuario.nickname,
     usuario.email,
@@ -106,10 +107,11 @@ usuarioDb.update = function (usuario, id, funcallback) {
     usuario.apellido,
     usuario.direccion,
     usuario.telefono,
+    claveCifrada,
     id,
   ];
   const consulta =
-    "UPDATE usuarios set nickname = ?, email = ?, nombre=?, apellido=?,direccion=?,telefono=?  WHERE user_id = ?;";
+    "UPDATE usuarios set nickname = ?, email = ?, nombre=?, apellido=?,direccion=?,telefono=?, password = ?  WHERE user_id = ?;";
 
   connection.query(consulta, params, (err, result) => {
     if (err) {

@@ -7,11 +7,11 @@ const securityController = require("./securityController");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", getAll);
+app.get("/", securityController.verificarToken, getAll);
 app.post("/", createUser);
-app.put("/:id", updateUser);
-app.delete("/:id", deleteUser);
-app.get("/:id", getById);
+app.put("/:id", securityController.verificarToken, updateUser);
+app.delete("/:id", securityController.verificarToken, deleteUser);
+app.get("/:id", securityController.verificarToken, getById);
 
 function getAll(req, res) {
   usuarioDb.getAll((err, resultado) => {

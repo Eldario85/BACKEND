@@ -120,10 +120,14 @@ ADD UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
 ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE;
 ;
 
+ALTER TABLE `integrador`.`camisetas` 
+ADD COLUMN `imagen` VARCHAR(150) NULL AFTER `descripcion`;
+
+
 INSERT INTO usuarios (nickname, password, email, nombre, apellido, direccion, telefono, rol_id) VALUES ("admin","$2b$10$jj5zoCRdEdIWCjjQ31w2HOcjA2ws//YQbX4FCcxwDsBTAtNStceW6","admin@gmail.com","admin","admin","obera",3755404040, 1)
 
-Insert into integrador.equipos (equipo_id, nombre_del_equipo, pais, liga, año_de_fundacion) VALUES (1,"River Plate", "Argentina", "Liga Argentina",1901), (2,"Independiente", "Argentina", "Liga Argentina",1905), (3,"Real Madrid", "España", "La Liga",1900)
+INSERT INTO integrador.camisetas (camiseta_id, nombre_del_producto, descripcion, imagen, precio, stock, equipo_id, talla_id) VALUES (2,"Camiseta River Plate","Temporada 2023-2024","https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/401778e50ef4449d9656d40e9346b8af_9366/Camiseta_Titular_River_Plate_23-24_Blanco_HT3679_01_laydown.jpg",50000.00,1,1,2), (3,"Camiseta Independientee","Temporada 2023-2024","https://pbs.twimg.com/media/CQfjMNEWUAA3BFc.jpg",45000.00,1,2,2),(4,"Camiseta Real Madrid","Temporada 2023-2024","https://img.planetafobal.com/2013/08/real-madrid-adidas-titular-2013-2014-camiseta.jpg",60000.00,1,3,2)
 
 INSERT INTO integrador.camisetas (camiseta_id, nombre_del_producto, descripcion, precio, stock, equipo_id, talla_id) VALUES (2,"Camiseta River Plate","Temporada 2023-2024",50000.00,1,1,2), (3,"Camiseta Independientee","Temporada 2023-2024",45000.00,1,2,2),(4,"Camiseta Real Madrid","Temporada 2023-2024",60000.00,1,3,2)
 
-INSERT INTO integrador.camiseta_imagenes (camiseta_id,imagen_url) VALUES (2,"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/401778e50ef4449d9656d40e9346b8af_9366/Camiseta_Titular_River_Plate_23-24_Blanco_HT3679_01_laydown.jpg"), (3,"https://pbs.twimg.com/media/CQfjMNEWUAA3BFc.jpg"), (4,"https://img.planetafobal.com/2013/08/real-madrid-adidas-titular-2013-2014-camiseta.jpg")
+-- INSERT INTO integrador.camiseta_imagenes (camiseta_id,imagen_url) VALUES (2,"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/401778e50ef4449d9656d40e9346b8af_9366/Camiseta_Titular_River_Plate_23-24_Blanco_HT3679_01_laydown.jpg"), (3,"https://pbs.twimg.com/media/CQfjMNEWUAA3BFc.jpg"), (4,"https://img.planetafobal.com/2013/08/real-madrid-adidas-titular-2013-2014-camiseta.jpg")

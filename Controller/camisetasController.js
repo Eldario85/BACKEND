@@ -20,11 +20,11 @@ const camisetasDb = require("../Model/camisetas");
 const securityController = require("./securityController");
 
 // Definir las rutas de escucha (endpoint) disponibles para PERSONAS
-app.get("/", buscarTodos);
+app.get("/", securityController.verificarToken, buscarTodos);
 app.post("/", crear);
 app.put("/:id", securityController.verificarToken, actualizar);
 app.delete("/:id", securityController.verificarToken, borrar);
-app.get("/:id", getById);
+app.get("/:id", securityController.verificarToken, getById);
 
 // Definir las funciones utilizadas en los endpoints
 
