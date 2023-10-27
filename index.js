@@ -16,6 +16,7 @@ const controladorUsuario = require("./Controller/usuarioController");
 const controladorPedido = require("./Controller/pedidoController");
 const controladorCamisetas = require("./Controller/camisetasController");
 const controladorImagenes = require("./Controller/imagenesController");
+const controladorCarrito = require("./Controller/carritoController");
 
 const securityController = require("./Controller/securityController");
 app.use("/security", securityController.app);
@@ -24,6 +25,7 @@ app.use("/usuario", controladorUsuario);
 app.use("/pedido", controladorPedido);
 app.use("/camisetas", controladorCamisetas);
 app.use("/imagenes", controladorImagenes);
+app.use("/carrito", controladorCarrito);
 
 app.listen(configuraciones.server.port, (err) => {
   if (err) {
