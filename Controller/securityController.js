@@ -25,7 +25,7 @@ function login(req, res) {
         jwt.sign(
           user,
           "siliconSectret",
-          { expiresIn: "600s" },
+          { expiresIn: "6000s" },
           (err, token) => {
             if (err) {
               res.status(500).send({ message: err });
