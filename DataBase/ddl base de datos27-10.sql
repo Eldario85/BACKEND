@@ -222,6 +222,16 @@ INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `l
 INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('2', 'Independiente', 'Argentina', 'Argentina', '1905');
 INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('3', 'Real Madrid', 'España', 'La Liga', '1920');
 INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('4', 'Inter Miami', 'EEUU', 'MLS', '2018');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('5', 'Bayern Munich', 'Alemania', 'BundesLiga', '1900');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('6', 'Boca Juniors', 'Argentina', 'Liga Argentina', '1905');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('7', 'Racing Club', 'Argentina', 'Liga Argentina', '1903');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('8', 'FC Barcelona', 'España', 'La Liga', '1899');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('9', 'Manchester United', 'Inglaterra', 'Premier League', '1878');
+INSERT INTO `integrador`.`equipos` (`equipo_id`, `nombre_del_equipo`, `pais`, `liga`, `año_de_fundacion`) VALUES ('10', 'Manchester City', 'Inglaterra', 'Premier League', '1894');
+
+
+
+
 
 INSERT INTO usuarios (nickname, password, email, nombre, apellido, direccion, telefono, rol_id) VALUES ("admin","$2b$10$jj5zoCRdEdIWCjjQ31w2HOcjA2ws//YQbX4FCcxwDsBTAtNStceW6","admin@gmail.com","admin","admin","obera",3755404040, 1);
 
