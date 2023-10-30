@@ -19,12 +19,12 @@ const equiposDb = {};
 //crear equipos
 equiposDb.create = function (equipo, funCallback) {
   consulta =
-    "INSERT INTO equipos (nombre_del_equipo, pais, liga, año_de_fundacion) VALUES (?,?,?,?);";
+    "INSERT INTO equipos (nombre_del_equipo, pais, liga, anio_de_fundacion) VALUES (?,?,?,?);";
   params = [
     equipo.nombre_del_equipo,
     equipo.pais,
     equipo.liga,
-    equipo.año_fundacion,
+    equipo.anio_de_fundacion,
   ];
 
   connection.query(consulta, params, (err, rows) => {
@@ -67,12 +67,12 @@ equiposDb.getAll = function (funCallback) {
 // U = UPDATE
 equiposDb.update = function (equipo, id, funCallback) {
   const consulta =
-    "UPDATE equipos SET nombre_del_equipo =?, pais= ?, liga=?, año_de_fundacion =? WHERE equipo_id = ?";
+    "UPDATE equipos SET nombre_del_equipo =?, pais= ?, liga=?, anio_de_fundacion =? WHERE equipo_id = ?";
   const params = [
     equipo.nombre_del_equipo,
     equipo.pais,
     equipo.liga,
-    equipo.año_fundacion,
+    equipo.anio_de_fundacion,
     id,
   ];
 

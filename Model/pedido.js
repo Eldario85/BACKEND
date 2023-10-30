@@ -73,7 +73,6 @@ pedidoDb.update = function (pedido, id, funCallback) {
   connection.query(consulta, params, (err, result) => {
     if (err) {
       if (err.code == "ER_DUP_ENTRY") {
-        //dni duplicado
         funCallback({
           message: "Los datos a insertar generan un pedido duplicado",
           detail: err,
@@ -86,7 +85,6 @@ pedidoDb.update = function (pedido, id, funCallback) {
         });
       }
     } else if (result.affectedRows == 0) {
-      //persona a actualizar no encontrada
       funCallback({
         message: "No existe pedido que coincida con el criterio de busqueda",
         detail: result,
@@ -101,7 +99,7 @@ pedidoDb.update = function (pedido, id, funCallback) {
 };
 
 // D = DELETE
-// personaController --> app.post('/', borrar);
+
 pedidoDb.borrar = function (id, funCallback) {
   const consulta = "DELETE FROM pedidos WHERE id = ?";
   connection.query(consulta, id, (err, result) => {
